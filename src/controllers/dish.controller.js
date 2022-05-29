@@ -13,7 +13,17 @@ router.post("", async (req, res) => {
 
 router.get("", async (req, res) => {
   try {
-    const dishes = await Dish.find()
+
+    let Location = {};
+    let Resturant = {};
+    if (req.query.category_id) {
+      Location = { location_id: req.query.location_id };
+    }
+
+    if (req.query.category_id) {
+      Resturant = { resturant_id: req.query.resturant_id };
+    }
+    const dishes = await Dish.find(Location || Resturant)
       .populate({ path: "resturant_id", select: "resturant_name" })
       .populate({ path: "category_id", select: "category" })
       .populate({ path: "location_id", select: "location" })
