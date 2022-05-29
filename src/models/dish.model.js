@@ -9,6 +9,16 @@ const dishSchema = new mongoose.Schema(
       ref: "resturant",
       required: true,
     },
+    category_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "category",
+      required: true,
+    },
+    location_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "location",
+      required: true,
+    },
   },
   {
     versionKey: false,
